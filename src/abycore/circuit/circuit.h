@@ -416,32 +416,32 @@ public:
 	std::vector<uint32_t> PutSplitterGate(uint32_t input, const std::vector<uint32_t>& new_nvals);
 
 	//Templates may not be virtual, hence use dummy functions
-	template <class T> uint32_t PutINGate([[maybe_unused]] T val) {
+	template <class T> uint32_t PutINGate(T val) {
 		std::cout << "IN gate not implemented in super-class, stopping!" << std::endl;
 		return -1;
 	}
 
-	template<class T> uint32_t PutINGate([[maybe_unused]] T val, [[maybe_unused]] e_role role) {
+	template<class T> uint32_t PutINGate(T val, e_role role) {
 		std::cout << "IN gate not implemented in super-class, stopping!" << std::endl;
 		return -1;
 	}
 
-	template<class T> uint32_t PutSharedINGate([[maybe_unused]] T val) {
+	template<class T> uint32_t PutSharedINGate(T val) {
 		std::cout << "IN gate not implemented in super-class, stopping!" << std::endl;
 		return -1;
 	}
 
-	template<class T> uint32_t PutSIMDINGate([[maybe_unused]]uint32_t nvals, [[maybe_unused]] T val) {
+	template<class T> uint32_t PutSIMDINGate(uint32_t nvals, T val) {
 		std::cout << "IN gate not implemented in super-class, stopping!" << std::endl;
 		return -1;
 	}
 
-	template<class T> uint32_t PutSIMDINGate([[maybe_unused]] uint32_t nvals, [[maybe_unused]] T val, [[maybe_unused]] e_role role) {
+	template<class T> uint32_t PutSIMDINGate(uint32_t nvals, T val, e_role role) {
 		std::cout << "IN gate not implemented in super-class, stopping!" << std::endl;
 		return -1;
 	}
 
-	template<class T> uint32_t PutSharedSIMDINGate([[maybe_unused]]uint32_t nvals, [[maybe_unused]] T val) {
+	template<class T> uint32_t PutSharedSIMDINGate(uint32_t nvals, T val) {
 		std::cout << "IN gate not implemented in super-class, stopping!" << std::endl;
 		return -1;
 	}
