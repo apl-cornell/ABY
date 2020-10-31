@@ -2245,6 +2245,66 @@ std::vector<uint32_t> BooleanCircuit::PutFPGate(const std::string func, std::vec
 }
 
 
+std::vector<uint32_t> BooleanCircuit::PutGateFromArray(std::vector<int> circuit, std::vector<uint32_t> inputs, uint32_t nvals){
+	std::vector<uint32_t> outputs;
+	std::map<uint32_t, uint32_t> wires;
+
+  for (uint32_t i = 0; i < inputs.size(); i++) {
+    wires[i] = inputs[i];
+  }
+
+  uint32_t i = 0;
+  while (i < circuit.size()) {
+    switch ((char)circuit[i]) {
+      case '0': // Constant Zero Gate
+        wires[circuit[i+1]] = PutConstantGate(0, nvals);
+        i += 2;
+        break;
+
+      case '1': // Constant One Gate
+        wires[circuit[i+1]] = PutConstantGate(1, nvals);
+        i += 2;
+        break;
+
+      case 'A': // AND Gate
+        wires[circuit[i+3]] = PutANDGate(wires[circuit[i+1]], wires[circuit[i+2]]);
+        i += 4;
+        break;
+
+      case 'X': // XOR Gate
+        wires[circuit[i+3]] = PutXORGate(wires[circuit[i+1]], wires[circuit[i+2]]);
+        i += 4;
+        break;
+
+      case 'V': // OR Gate
+        wires[circuit[i+3]] = PutORGate(wires[circuit[i+1]], wires[circuit[i+2]]);
+        i += 4;
+        break;
+
+      case 'M': // MUX Gate
+        wires[circuit[i+4]] = PutVecANDMUXGate(wires[circuit[i+2]], wires[circuit[i+1]], wires[circuit[i+3]]);
+        i += 5;
+        break;
+
+      case 'I': // INV Gate
+        wires[circuit[i+2]] = PutINVGate(wires[circuit[i+1]]);
+        i += 3;
+        break;
+
+      case 'O': // List of output wires
+        for (uint32_t j = i+1; j < circuit.size(); j++) {
+          outputs.push_back(wires[circuit[j]]);
+        }
+        i = circuit.size();
+        break;
+    }
+  }
+
+	wires.clear();
+	return outputs;
+}
+
+
 std::vector<uint32_t> BooleanCircuit::PutGateFromFile(const std::string filename, std::vector<uint32_t> inputs, uint32_t nvals){
 	std::string line;
 	std::vector<uint32_t> tokens, outputs;

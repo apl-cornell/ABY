@@ -6,6 +6,8 @@ add_library(aby
     circuit/booleancircuits.cpp
     circuit/circuit.cpp
     circuit/share.cpp
+    circuit/extra-gates.cpp
+    circuit/int32div.cpp
     DGK/dgkparty.cpp
     DJN/djnparty.cpp
     sharing/arithsharing.cpp

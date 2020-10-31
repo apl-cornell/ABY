@@ -645,6 +645,15 @@ public:
 		 */
 		share * PutFPGate(share * in_a, share * in_b, op_t op, uint8_t bitlen = 0, uint32_t nvals = 0, fp_op_setting s = no_status);
 
+
+    /**
+     * Create circuit from interpreting array, which serializes the same
+     * format that PutGateFromFile reads.
+     * @param circuit array to interpret as a circuit 
+     * @param inputs inputs to the circuit
+     */
+    std::vector<uint32_t> PutGateFromArray(std::vector<int> circuit, std::vector<uint32_t> inputs, uint32_t nvals = 1);
+
 private:
 	/**
 	 * When inputting shares with bitlen>1 and nvals convert to regular SIMD in gates
