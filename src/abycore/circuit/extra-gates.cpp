@@ -20,3 +20,20 @@ share* PutInt32DIVGate(Circuit* circ, share* lhs, share* rhs) {
 
 	return new boolshare(div_output, bcirc);
 }
+
+share* PutMinGate(Circuit* circ, share* lhs, share* rhs) {
+  BooleanCircuit* bcirc = (BooleanCircuit*)circ;
+	std::vector<std::vector<uint32_t> > min(2);
+  min[0] = lhs->get_wires();
+  min[1] = rhs->get_wires();
+	return new boolshare(bcirc->PutMinGate(min), this);
+}
+
+share* PutMaxGate(Circuit* circ, share* lhs, share* rhs) {
+  BooleanCircuit* bcirc = (BooleanCircuit*)circ;
+	std::vector<std::vector<uint32_t> > max(2);
+  max[0] = lhs->get_wires();
+  max[1] = rhs->get_wires();
+	return new boolshare(bcirc->PutMaxGate(max), this);
+}
+
