@@ -26,7 +26,7 @@ share* PutMinGate(Circuit* circ, share* lhs, share* rhs) {
 	std::vector<std::vector<uint32_t> > min(2);
   min[0] = lhs->get_wires();
   min[1] = rhs->get_wires();
-	return new boolshare(bcirc->PutMinGate(min), this);
+	return new boolshare(bcirc->PutMinGate(min), bcirc);
 }
 
 share* PutMaxGate(Circuit* circ, share* lhs, share* rhs) {
@@ -34,6 +34,6 @@ share* PutMaxGate(Circuit* circ, share* lhs, share* rhs) {
 	std::vector<std::vector<uint32_t> > max(2);
   max[0] = lhs->get_wires();
   max[1] = rhs->get_wires();
-	return new boolshare(bcirc->PutMaxGate(max), this);
+	return new boolshare(bcirc->PutMaxGate(max), bcirc);
 }
 
